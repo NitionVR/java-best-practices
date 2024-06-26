@@ -5,6 +5,7 @@ on:
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
@@ -22,6 +23,9 @@ jobs:
           chmod 600 ~/.ssh/id_rsa
           ssh-keyscan -H ${{ secrets.PRODUCTION_SERVER }} >> ~/.ssh/known_hosts
 
+      - name: Debug SSH Connection
+        run: ssh -v -o "StrictHostKeyChecking=no" kmaganyane83@${{ secrets.PRODUCTION_SERVER }} "echo connected"
+
       - name: Build and test with Maven
         run: mvn clean package
 
@@ -31,4 +35,5 @@ jobs:
         run: |
           ssh -o "StrictHostKeyChecking=no" kmaganyane83@$PRODUCTION_SERVER "mkdir -p /opt/myapp"
           rsync -avz --exclude='target/' --exclude='.git/' ./ kmaganyane83@$PRODUCTION_SERVER:/opt/myapp/
+
 
