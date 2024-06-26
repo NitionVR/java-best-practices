@@ -1,0 +1,20 @@
+on:
+  push:
+    branches: [ trunk ]
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: Build and test with Maven
+        run: mvn clean package
+      - name: Deploy to production
+        env:
+          PRODUCTION_SERVER: $ {{ secrets.PRODUCTION_SERVER }}
+        run: mvn deploy -Ddeploy.server=$ {PRODUCTION_SERVER}
+          
+          
+    
+  
