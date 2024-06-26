@@ -20,7 +20,7 @@ jobs:
           mkdir -p ~/.ssh
           echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
           chmod 600 ~/.ssh/id_rsa
-          ssh-keyscan 34.35.23.160 >> ~/.ssh/known_hosts
+          ssh-keyscan ${{ secrets.PRODUCTION_SERVER }} >> ~/.ssh/known_hosts
 
       - name: Build and test with Maven
         run: mvn clean package
@@ -29,7 +29,8 @@ jobs:
         env:
           PRODUCTION_SERVER: ${{ secrets.PRODUCTION_SERVER }}
         run: |
-          ssh -o "StrictHostKeyChecking=no" kmaganyane83@$PRODUCTION_SERVER "mkdir -p /opt/myapp"
-          rsync -avz --exclude='target/' --exclude='.git/' ./ kmaganyane83@$PRODUCTION_SERVER:/opt/myapp/
+          ssh -o "StrictHostKeyChecking=no" kmaganyane83@${{ secrets.PRODUCTION_SERVER }} "mkdir -p /opt/myapp"
+          rsync -avz --exclude='target/' --exclude='.git/' ./ kmaganyane83@${{ secrets.PRODUCTION_SERVER }}:/opt/myapp/
+
 
 
