@@ -29,7 +29,6 @@ jobs:
         env:
           PRODUCTION_SERVER: ${{ secrets.PRODUCTION_SERVER }}
         run: |
-          ssh -o "StrictHostKeyChecking=no" kmaganyane83@${{ secrets.PRODUCTION_SERVER }} "mkdir -p /opt/myapp"
           rsync -avz --exclude='target/' --exclude='.git/' ./ kmaganyane83@${{ secrets.PRODUCTION_SERVER }}:/opt/myapp/
 
 
