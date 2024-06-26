@@ -12,9 +12,8 @@ jobs:
         run: mvn clean package
       - name: Deploy to production
         env:
-          PRODUCTION_SERVER: $ {{ secrets.PRODUCTION_SERVER }}
-        run: mvn deploy -Ddeploy.server=$ {PRODUCTION_SERVER}
-          
-          
-    
+          PRODUCTION_SERVER: ${{ secrets.PRODUCTION_SERVER }}
+        run: |
+          ssh -o "StrictHostKeyChecking=no" $PRODUCTION_SERVER "mkdir -p /opt/myapp"
+          mvn deploy -Ddeploy.server=$PRODUCTION_SERVER -Ddeploy.path=/opt/myapp
   
