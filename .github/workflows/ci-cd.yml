@@ -29,7 +29,8 @@ jobs:
         env:
           PRODUCTION_SERVER: ${{ secrets.PRODUCTION_SERVER }}
         run: |
-          rsync -avz --exclude='target/' --exclude='.git/' ./ kmaganyane83@${{ secrets.PRODUCTION_SERVER }}:/opt/myapp/
+          /usr/bin/rsync -avz --exclude='target/' --exclude='.git/' ./ kmaganyane83@${{ secrets.PRODUCTION_SERVER }}:/opt/myapp/
+
 
 
 
