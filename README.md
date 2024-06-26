@@ -1,2 +1,2 @@
 # java-best-practices
-The repo to experiment with java-best-practice and CI/CD pipeline.
+The repo to experiment with java-best-practices and CI/CD pipeline.
