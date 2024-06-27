@@ -3,7 +3,6 @@ package org.nition;
 public class Example {
     public static void main(String[] args) {
         System.out.println(greeting());
-        System.out.println(getDatabasePassword());
     }
 
     public static String greeting(){
@@ -11,7 +10,4 @@ public class Example {
     }
 
 
-    public static String getDatabasePassword() {
-        return "superSecretPassword";
-    }
 }

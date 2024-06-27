@@ -12,8 +12,4 @@ public class TestExample {
         assertEquals(Example.greeting(), "Hello World!");
     }
 
-    @Test
-    void testGetDatabasePassword(){
-        assertEquals(Example.getDatabasePassword(), "superSecretPassword");
-    }
 }
