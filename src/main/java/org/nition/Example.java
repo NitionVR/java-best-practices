@@ -12,6 +12,6 @@ public class Example {
 
 
     public static String getDatabasePassword() {
-        return "superSecretPasswo";
+        return "superSecretPassword";
     }
 }
